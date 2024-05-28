@@ -7,10 +7,14 @@ class ListsController < ApplicationController
     list = List.new(list_params)
     list.save
     redirect_to root
+  end 
+  
   def index
+    @list = List.all
   end
 
   def show
+    @list = List.find(params[:id])
   end
 
   def edit
