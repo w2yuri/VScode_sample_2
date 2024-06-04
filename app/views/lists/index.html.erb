@@ -1,23 +1,27 @@
 <div class="container px-5 px-sm-0">
-   <div class="row">
-     <div class="col-md-3">
-       <h2>New Post</h2>
-        <%= render "post", list: @list %>
-     </div>
-
-     <div class="col-md-8 offset-md-1">
-        <h1>投稿一覧</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <h2>New Post</h2>
+      <%= render "post", list: @list %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h1>投稿一覧</h1>
+      <% if @lists.present? %>
         <% @lists.each do |list| %>
-
-            <p>タイトル</p>
-            <span>
-              <%= link_to list.title, list_path(list.id) %>
-            </span>
-
-            <p>画像</p>
+          <p>タイトル</p>
+          <span>
+            <%= link_to list.title, list_path(list.id) %>
+          </span>
+          <p>画像</p>
+          <% if list.image.attached? %>
             <%= image_tag list.image, size: "200x200" %>
-
+          <% else %>
+            <p>画像がありません。</p>
+          <% end %>
         <% end %>
-     </div>
-   </div>
+      <% else %>
+        <p>投稿がありません。</p>
+      <% end %>
+    </div>
+  </div>
 </div>
