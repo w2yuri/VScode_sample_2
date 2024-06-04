@@ -1,7 +1,4 @@
 class ListsController < ApplicationController
-  def new
-    @list = List.new
-  end
 
   def create
     @list = List.new(list_params)
@@ -13,6 +10,7 @@ class ListsController < ApplicationController
   end
   
   def index
+    @list = List.new
     @lists = List.all
   end
 
